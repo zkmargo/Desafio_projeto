@@ -1,0 +1,41 @@
+int motor = 13;
+float sensor = A0;
+float temp = 0;
+int led = 8;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(motor, OUTPUT);
+  pinMode(sensor, INPUT);
+  pinMode(8, OUTPUT);
+  
+}
+
+void loop(){
+  
+  temp = map(((analogRead(sensor) - 20) * 3.04), 0, 1023, -40, 125);
+  
+        
+
+  if(temp>=30){
+    
+    digitalWrite(motor, HIGH);
+    
+}
+  if(temp >50){
+    digitalWrite(motor, HIGH);
+    digitalWrite(led, HIGH);
+    delay(300);
+    digitalWrite(led, LOW);
+    delay(300);
+    tone(2, 1000);
+    delay(500);
+    noTone(2);
+    delay(500);
+  }
+    
+Serial.println(temp);
+  
+  delay(1000);
+  
+}
